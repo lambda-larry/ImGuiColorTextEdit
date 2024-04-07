@@ -34,3 +34,6 @@ TextEditor.cpp.bak
 *.bak
 Save/TextEditor.h
 Save/TextEditor.cpp
+
+.cache/
+compile_commands.json
