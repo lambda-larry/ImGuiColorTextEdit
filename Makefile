@@ -1,6 +1,9 @@
 CXXFLAGS := -pedantic -Wpedantic -Wall
 CPPFLAGS := -Isubprojects/imgui
 
+CXXFLAGS += -Wsequence-point
+CXXFLAGS += -Wsign-compare
+
 # The code compiles with C++11, but we might upgrade in the future
 CXXFLAGS += -std=c++11
 # CXXFLAGS += -std=c++17

@@ -3,7 +3,7 @@
 #include "imgui.h"
 #include <array>
 #include <map>
-#include <memory>
+#include <cstdint>
 #include <regex>
 #include <string>
 #include <unordered_map>
@@ -66,7 +66,7 @@ public:
 	// For example, coordinate (1, 5) represents the character 'B' in a line "\tABC", when mTabSize = 4,
 	// because it is rendered as "    ABC" on the screen.
 	struct Coordinates {
-		int mLine, mColumn;
+		size_t mLine, mColumn;
 
 		Coordinates()
 		    : mLine(0)
@@ -74,7 +74,7 @@ public:
 		{
 		}
 
-		Coordinates(int aLine, int aColumn)
+		Coordinates(size_t aLine, size_t aColumn)
 		    : mLine(aLine)
 		    , mColumn(aColumn)
 		{
@@ -357,10 +357,10 @@ public:
 	void InsertText(const std::string &aValue);
 	void InsertText(const char *aValue);
 
-	void MoveUp(int aAmount = 1, bool aSelect = false);
-	void MoveDown(int aAmount = 1, bool aSelect = false);
-	void MoveLeft(int aAmount = 1, bool aSelect = false, bool aWordMode = false);
-	void MoveRight(int aAmount = 1, bool aSelect = false, bool aWordMode = false);
+	void MoveUp(size_t aAmount = 1, bool aSelect = false);
+	void MoveDown(size_t aAmount = 1, bool aSelect = false);
+	void MoveLeft(size_t aAmount = 1, bool aSelect = false, bool aWordMode = false);
+	void MoveRight(size_t aAmount = 1, bool aSelect = false, bool aWordMode = false);
 	void MoveTop(bool aSelect = false);
 	void MoveBottom(bool aSelect = false);
 	void MoveHome(bool aSelect = false);
@@ -460,10 +460,10 @@ private:
 	Coordinates FindWordStart(const Coordinates &aFrom) const;
 	Coordinates FindWordEnd(const Coordinates &aFrom) const;
 	Coordinates FindNextWord(const Coordinates &aFrom) const;
-	int GetCharacterIndex(const Coordinates &aCoordinates) const;
-	int GetCharacterColumn(int aLine, int aIndex) const;
-	int GetLineCharacterCount(int aLine) const;
-	int GetLineMaxColumn(int aLine) const;
+	size_t GetCharacterIndex(const Coordinates &aCoordinates) const;
+	int GetCharacterColumn(size_t aLine, size_t aIndex) const;
+	int GetLineCharacterCount(size_t aLine) const;
+	size_t GetLineMaxColumn(size_t aLine) const;
 	bool IsOnWordBoundary(const Coordinates &aAt) const;
 	void RemoveLine(int aStart, int aEnd);
 	void RemoveLine(int aIndex);
